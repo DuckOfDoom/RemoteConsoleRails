@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  device_id: MyString
+  build_id: MyString
+  log_type: MyString
+  content: MyString
+  stack_trace: MyString
+  timestamp: 2015-07-05 00:30:52
+
+two:
+  device_id: MyString
+  build_id: MyString
+  log_type: MyString
+  content: MyString
+  stack_trace: MyString
+  timestamp: 2015-07-05 00:30:52
