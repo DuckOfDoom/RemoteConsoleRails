@@ -1,3 +1,4 @@
 == README
 Simple app that uses webrick server to process incoming POST requests from Unity3D application and saves them in sqlite database.
-<tt>rake doc:app</tt>.
+
+TODO: - Add sql query parser
