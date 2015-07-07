@@ -1,5 +1,6 @@
 class LogsController < ActionController::Base
     wrap_parameters format: [:json]
+    # protect_from_forgery with: :exception
 
     #    t.string   "device_id"
     #    t.string   "build_id"
@@ -10,7 +11,11 @@ class LogsController < ActionController::Base
     #    t.datetime "created_at"
     #    t.datetime "updated_at"
 
-    # protect_from_forgery with: :exception
+    def query 
+        @result = params.has_key?('query') ?
+            Log.find_by_sql(params[:query]) :
+            Log.all
+    end
 
     def save_log
         puts "\n"
@@ -23,7 +28,6 @@ class LogsController < ActionController::Base
         log.stack_trace = params[:stack_trace]
         log.timestamp = Time.zone.at(params[:timestamp])
         log.save
-
         render nothing:true
     end
 end
