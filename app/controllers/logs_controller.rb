@@ -12,9 +12,14 @@ class LogsController < ActionController::Base
     #    t.datetime "updated_at"
 
     def query 
-        @result = params.has_key?('query') ?
-            Log.find_by_sql(params[:query]) :
-            Log.all
+        @logs_grid = initialize_grid(Log,
+                                     per_page: 500,
+                                     order: 'logs.created_at',
+                                     order_direction: 'desc')
+
+        #        @result = params.has_key?('query') ?
+        #            Log.find_by_sql(params[:query]) :
+        #            Log.all
     end
 
     def save_log

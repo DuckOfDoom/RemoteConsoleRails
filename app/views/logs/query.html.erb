@@ -1,39 +1,26 @@
-<%= form_tag("/query", method: "get") do %>
-    <%= label_tag(:query, "SQL Query:") %>
-    <%= text_field_tag(:query) %>
-    <%= submit_tag("Search") %>
-<%end%>
+<%= grid(@logs_grid, show_filters: :always) do |g|
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Device ID</th>
-        <th>Build ID</th>
-        <th>Log Type</th>
-        <th>Log</th>
-        <th>Stack Trace</th>
-        <th>Device Time</th>
-        <th>Created At</th>
-    </tr>
+  g.column name: 'ID', attribute:'id' do |task|
+    task.id
+  end
 
-    <% @result.each do |r| %>
-        <tr>
-            <td><%= r.id %></td>
-            <td><%= r.device_id %></td>
-            <td><%= r.build_id %></td>
-            <td><%= r.log_type %></td>
-            <td><%= r.log %></td>
-            <td><%= r.stack_trace %></td>
-            <td><%= r.timestamp %></td>
-            <td><%= r.created_at %></td>
+  g.column name: 'Device ID', attribute:'device_id' do |task|
+    task.device_id
+  end
 
-            <% if false %>
-                <td><%= link_to "Show", r %></td>
-                <td><%= link_to "Edit", edit_book_path(book) %></td>
-                <td><%= link_to "Remove", book, method: :delete, data: { confirm: "Are you sure?" } %></td>
-            <% end %>
-        </tr>
-    <% end %>
-</table>
-<%#= link_to "New book", new_book_path %>
-<br>
+  g.column name: 'Log Type', attribute:'log_type', custom_filter: :auto do |task|
+    task.log_type
+  end
+
+  g.column name: 'Log', attribute:'log' do |task|
+    task.log
+  end
+
+  #g.column do |task|
+  #  task.archived? ? 'Yes' : 'No'
+  #end
+
+  #g.column do |task|
+  #  link_to('Edit', edit_task_path(task))
+  #end
+end -%>
