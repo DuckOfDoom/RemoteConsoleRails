@@ -1,22 +1,10 @@
 class LogsController < ApplicationController
-    wrap_parameters format: [:json]
-    # protect_from_forgery with: :exception
+    helper_method :sort_column, :sort_direction
 
-    #    t.string   "device_id"
-    #    t.string   "build_id"
-    #    t.string   "log_type"
-    #    t.string   "log"
-    #    t.string   "stack_trace"
-    #    t.datetime "timestamp"
-    #    t.datetime "created_at"
-    #    t.datetime "updated_at"
+    wrap_parameters format: [:json]
 
     def index
         @logs = Log.order(sort_column + ' ' + sort_direction)
-
-        #        @result = params.has_key?('query') ?
-        #            Log.find_by_sql(params[:query]) :
-        #            Log.all
     end
 
     def save_log
@@ -35,10 +23,10 @@ class LogsController < ApplicationController
 
     private
     def sort_column
-        params[:sort] || "created_at"
+        Log.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
     end
 
     def sort_direction
-        params[:direction] || "asc"
+        %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
     end
 end
