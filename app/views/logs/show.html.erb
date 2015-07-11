@@ -1,0 +1,20 @@
+<%= link_to 'Back', :back %>
+
+<h3><%= title %></h3>
+<p>
+<b>Created At:</b> <%= format_timestamp(@log.created_at)%><br>
+<b>Device Time:</b> <%= format_timestamp(@log.timestamp)%>
+</p>
+
+<b>Device ID: </b> <%= @log.device_id %>
+
+<p> 
+<b>Log Type: </b>
+<%= @log.log_type %>
+</p>
+
+<p>
+<b>Log Details: </b><br>
+<%= @log.log %><br>
+<%= @log.stack_trace %>
+</p>

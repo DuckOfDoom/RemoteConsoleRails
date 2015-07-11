@@ -9,14 +9,18 @@ class LogsController < ApplicationController
 
     def save_log
         log = Log.new
-        log.device_id = params[:device_id]
         log.build_id = params[:build_id]
+        log.device_id = params[:device_id]
         log.log_type = params[:log_type]
         log.log = params[:log]
         log.stack_trace = params[:stack_trace]
         log.timestamp = Time.zone.at(params[:timestamp])
         log.save
         render nothing:true
+    end
+
+    def show
+        @log = Log.find(params[:id])
     end
 
     private

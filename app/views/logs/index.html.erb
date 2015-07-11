@@ -18,7 +18,7 @@
             <td><%= log.created_at.to_s(:short) %></td>
             <td><%= log.device_id %></td>
             <td><%= log.log_type %></td>
-            <td><%= log.log %></td>
+            <td><%= link_to log.log, log %></td>
         </tr>
     <% end %>
     <%= will_paginate @logs %>
