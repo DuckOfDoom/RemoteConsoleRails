@@ -1,4 +1,6 @@
 RemoteConsoleServer::Application.routes.draw do
+    resources :logs
+
     post 'logs' => 'logs#save_log'
     get 'query' => 'logs#query'
 

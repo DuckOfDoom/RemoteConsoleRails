@@ -4,12 +4,10 @@ class LogsController < ApplicationController
     wrap_parameters format: [:json]
 
     def index
-        @logs = Log.order(sort_column + ' ' + sort_direction)
+        @logs = Log.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(per_page: 50, page: params[:page])
     end
 
     def save_log
-        puts "\n"
-
         log = Log.new
         log.device_id = params[:device_id]
         log.build_id = params[:build_id]
@@ -27,6 +25,6 @@ class LogsController < ApplicationController
     end
 
     def sort_direction
-        %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+        %w[asc desc].include?(params[:direction]) ?  params[:direction] : "desc"
     end
 end
