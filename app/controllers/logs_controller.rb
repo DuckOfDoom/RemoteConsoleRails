@@ -1,4 +1,4 @@
-class LogsController < ActionController::Base
+class LogsController < ApplicationController
     wrap_parameters format: [:json]
     # protect_from_forgery with: :exception
 
@@ -11,11 +11,8 @@ class LogsController < ActionController::Base
     #    t.datetime "created_at"
     #    t.datetime "updated_at"
 
-    def query 
-        @logs_grid = initialize_grid(Log,
-                                     per_page: 500,
-                                     order: 'logs.created_at',
-                                     order_direction: 'desc')
+    def index
+        @logs = Log.order(sort_column + ' ' + sort_direction)
 
         #        @result = params.has_key?('query') ?
         #            Log.find_by_sql(params[:query]) :
@@ -34,5 +31,14 @@ class LogsController < ActionController::Base
         log.timestamp = Time.zone.at(params[:timestamp])
         log.save
         render nothing:true
+    end
+
+    private
+    def sort_column
+        params[:sort] || "created_at"
+    end
+
+    def sort_direction
+        params[:direction] || "asc"
     end
 end

@@ -2,7 +2,7 @@ RemoteConsoleServer::Application.routes.draw do
     post 'logs' => 'logs#save_log'
     get 'query' => 'logs#query'
 
-    root :to => 'logs#query'
+    root :to => 'logs#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
