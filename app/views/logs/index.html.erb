@@ -1,11 +1,19 @@
 <table class="pretty">
     <tr>
-        <th><%= sortable "created_at", "Time Created" %></th>
-        <th><%= sortable "device_id" %></th>
-        <th><%= sortable "log_type" %></th>
         <th>
-            <%= render partial: 'search_field', locals: { column: 'log' } %>
+            <%= sortable "created_at", "Time Created" %>
+        </th>
+        <th>
+            <%= sortable "device_id" %>
+            <%= render partial: 'search_field', locals: { column: 'device_id' } %>
+        </th>
+        <th>
+            <%= sortable "log_type" %>
+            <%= render partial: 'search_field', locals: { column: 'log_type' } %>
+        </th>
+        <th>
             <%= sortable "log" %>
+            <%= render partial: 'search_field', locals: { column: 'log' } %>
         </th>
     </tr>
     <% for log in @logs %>
