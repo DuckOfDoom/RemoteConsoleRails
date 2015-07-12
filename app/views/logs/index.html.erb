@@ -4,13 +4,8 @@
         <th><%= sortable "device_id" %></th>
         <th><%= sortable "log_type" %></th>
         <th>
+            <%= render partial: 'search_field', locals: { column: 'log' } %>
             <%= sortable "log" %>
-            <%= form_tag logs_path, :method => 'get' do %>
-                <%= hidden_field_tag :direction, params[:direction] %>
-                <%= hidden_field_tag :sort, params[:sort] %>
-                <%= hidden_field_tag :search_column, 'log'%>
-                <p> <%= text_field_tag :search_pattern, params[:search_pattern] %> </p>
-            <% end %>
         </th>
     </tr>
     <% for log in @logs %>
