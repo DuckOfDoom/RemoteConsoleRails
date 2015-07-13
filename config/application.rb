@@ -13,6 +13,7 @@ module RemoteConsoleServer
     # We dont need strong parameters for this
     config.action_controller.permit_all_parameters = true
     # Let's use our local time zone
+    config.time_zone = 'Moscow'
     config.active_record.default_timezone = :local
 
     # Settings in config/environments/* take precedence over those specified here.
