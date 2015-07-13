@@ -1,4 +1,6 @@
 == README
-Simple app that uses webrick server to process incoming POST requests from Unity3D application and saves them in sqlite database.
 
-TODO: - Add sql query parser
+TODO:
+- Dropdown for log type(won't change)
+- Device filter 
+- Horizontal scroll for long lines in stack traces

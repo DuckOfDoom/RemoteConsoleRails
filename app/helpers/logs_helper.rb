@@ -4,6 +4,6 @@ module LogsHelper
     end
     
     def format_timestamp(datetime)
-        return datetime.to_s(:short)
+        datetime.strftime("%k:%M:%S, %-d %b %Y")
     end
 end
