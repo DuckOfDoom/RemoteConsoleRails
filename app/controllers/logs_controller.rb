@@ -7,7 +7,7 @@ class LogsController < ApplicationController
         @logs = Log.search(params[:search_column], params[:search_pattern]).order(sort_column + ' ' + sort_direction).paginate(per_page: 200, page: params[:page])
     end
 
-    def save_log
+    def create
         log = Log.new
         log.build_id = params[:build_id]
         log.device_id = params[:device_id]

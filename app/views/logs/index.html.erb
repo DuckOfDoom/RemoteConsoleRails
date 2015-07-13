@@ -4,12 +4,14 @@
             <%= sortable "created_at", "Time Created" %>
         </th>
         <th>
+            <%= sortable "build_id", 'Version/Build ID' %>
+            <%= render partial: 'search_field', locals: { column: 'build_id' } %>
+        </th>
+        <th>
             <%= sortable "device_id" %>
-            <%= render partial: 'search_field', locals: { column: 'device_id' } %>
         </th>
         <th>
             <%= sortable "log_type" %>
-            <%= render partial: 'search_field', locals: { column: 'log_type' } %>
         </th>
         <th>
             <%= sortable "log" %>
@@ -19,6 +21,7 @@
     <% for log in @logs %>
         <tr>
             <td><%= format_timestamp log.created_at %></td>
+            <td><%= log.build_id %></td>
             <td><%= log.device_id %></td>
             <td><%= log.log_type %></td>
             <td><%= link_to log.log, log %></td>
