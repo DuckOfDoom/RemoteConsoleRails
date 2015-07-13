@@ -5,9 +5,10 @@
 <b>Created At:</b> <%= format_timestamp(@log.created_at)%><br>
 <b>Device Time:</b> <%= format_timestamp(@log.timestamp)%>
 </p>
-
+<p>
+<b>Version/Build ID: </b> <%= @log.build_id %><br>
+</p>
 <b>Device ID: </b> <%= @log.device_id %>
-
 <p> 
 <b>Log Type: </b>
 <%= @log.log_type %>
