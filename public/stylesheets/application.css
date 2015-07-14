@@ -74,6 +74,15 @@ a {
   margin: 0;
 }
 
+table.form {
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.form td, .form th {
+  padding: 5px 10px;
+}
+
 table.pretty {
   border-collapse: collapse;
 }

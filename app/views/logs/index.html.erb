@@ -1,22 +1,35 @@
+<%= form_tag logs_path, :method => 'get' do %>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
+
+    <% params[:search] ||= { log_type: 'All',  device_id: 'All', log: ''} %>
+
+    <table class="form">
+        <tr>
+            <th> <b> Log Type: </b></th>
+            <th> <%= select :search, :log_type, Log.pluck(:log_type).uniq, {include_blank: 'All', selected: params[:search][:log_type]} %> </th>
+        </tr>
+        <tr>
+            <th><b> Device ID: </b></th>
+            <th> <%= select :search, :device_id, Log.pluck(:device_id).uniq, {include_blank: 'All', selected: params[:search][:device_id]} %> </th>
+        </tr>
+        <tr>
+            <th><b> Search Log: </b></th>
+            <th><%= text_field_tag 'search[log]', params[:search][:log], size: 100 %></th>
+        </tr>
+        <tr>
+            <th><%= submit_tag "Search by log", size:300 %></th>
+        </tr>
+    </table>
+<% end %>
+<p>
 <table class="pretty">
     <tr>
-        <th>
-            <%= sortable "created_at", "Time Created" %>
-        </th>
-        <th>
-            <%= sortable "build_id", 'Version/Build ID' %>
-            <%= render partial: 'search_field', locals: { column: 'build_id' } %>
-        </th>
-        <th>
-            <%= sortable "device_id" %>
-        </th>
-        <th>
-            <%= sortable "log_type" %>
-        </th>
-        <th>
-            <%= sortable "log" %>
-            <%= render partial: 'search_field', locals: { column: 'log' } %>
-        </th>
+        <th> <%= sortable "created_at", "Time Created" %> </th>
+        <th> <%= sortable "build_id", 'Version/Build ID' %> </th>
+        <th> <%= sortable "device_id" %> </th>
+        <th> <%= sortable "log_type" %> </th>
+        <th> <%= sortable "log" %> </th>
     </tr>
     <% for log in @logs %>
         <tr>
