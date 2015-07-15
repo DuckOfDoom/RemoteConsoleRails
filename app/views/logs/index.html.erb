@@ -1,4 +1,6 @@
 <%= form_tag logs_path, :method => 'get' do %>
+    <%= hidden_field_tag :direction, params[:direction] %>
+    <%= hidden_field_tag :sort, params[:sort] %>
     <th><%= submit_tag "Reset search" %></th>
 <% end %>
 
@@ -6,7 +8,7 @@
     <%= hidden_field_tag :direction, params[:direction] %>
     <%= hidden_field_tag :sort, params[:sort] %>
 
-    <% params[:search] ||= { log_type: 'All',  device_id: 'All', log: ''} %>
+    <% params[:search] ||= { log_type: '',  device_id: '', log: ''} %>
 
     <table class="form">
         <tr>
