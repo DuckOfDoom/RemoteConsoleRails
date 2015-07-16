@@ -5,11 +5,13 @@ class LogsController < ApplicationController
 
     def index
         @logs = Log.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(per_page: 200, page: params[:page])
+        flash[:notice] = "Found #{@logs.size} entr" + (@logs.size == 1 ? "y" : "ies")
+        @logs
     end
 
     def clear_database
 #        Log.destroy_all
-        flash[:notice] = "Database cleared!"
+        flash[:error] = "Database cleared!"
         redirect_to :back
     end
 
