@@ -1,6 +1,4 @@
 == README
 
 TODO:
-- Dropdown for log type(won't change)
-- Device filter 
 - Horizontal scroll for long lines in stack traces
