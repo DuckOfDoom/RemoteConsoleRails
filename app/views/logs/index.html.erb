@@ -1,14 +1,19 @@
+<!-- <div align="right">
+    <%= button_to "Clear database", controller: 'logs', action: 'clear_database', confirm: 'Are you sure?' %>
+</div>
+-->
+
 <%= form_tag logs_path, :method => 'get' do %>
     <%= hidden_field_tag :direction, params[:direction] %>
     <%= hidden_field_tag :sort, params[:sort] %>
-    <th><%= submit_tag "Reset search" %></th>
+    <%= submit_tag "Reset search" %>
 <% end %>
 
 <%= form_tag logs_path, :method => 'get' do %>
     <%= hidden_field_tag :direction, params[:direction] %>
     <%= hidden_field_tag :sort, params[:sort] %>
 
-    <% params[:search] ||= { log_type: '',  device_id: '', log: ''} %>
+    <% params[:search] ||= { log_type: '',  device_id: '', build_id: '', log: ''} %>
 
     <table class="form">
         <tr>
@@ -20,11 +25,15 @@
             <th> <%= select :search, :device_id, Log.pluck(:device_id).uniq, {include_blank: 'All', selected: params[:search][:device_id]} %> </th>
         </tr>
         <tr>
-            <th><b> Search Log: </b></th>
+            <th><b> Build ID/Version: </b></th>
+            <th><%= text_field_tag 'search[build_id]', params[:search][:build_id], size: 50 %></th>
+        </tr>
+        <tr>
+            <th><b> Log: </b></th>
             <th><%= text_field_tag 'search[log]', params[:search][:log], size: 100 %></th>
         </tr>
         <tr>
-            <th><%= submit_tag "Search by log" %></th>
+            <th><%= submit_tag "Search " %></th>
         </tr>
     </table>
 <% end %>

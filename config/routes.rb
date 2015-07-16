@@ -1,6 +1,6 @@
 RemoteConsoleServer::Application.routes.draw do
     resources :logs
-
+    post 'logs/destroy_all', to:'logs#clear_database'
     root :to => 'logs#index'
 
     # The priority is based upon order of creation: first created -> highest priority.

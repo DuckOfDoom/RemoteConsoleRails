@@ -7,6 +7,12 @@ class LogsController < ApplicationController
         @logs = Log.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(per_page: 200, page: params[:page])
     end
 
+    def clear_database
+#        Log.destroy_all
+        flash[:notice] = "Database cleared!"
+        redirect_to :back
+    end
+
     def create
         log = Log.new
         log.build_id = params[:build_id]
@@ -29,6 +35,6 @@ class LogsController < ApplicationController
     end
 
     def sort_direction
-        %w[asc desc].include?(params[:direction]) ?  params[:direction] : "desc"
+        %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
     end
 end
