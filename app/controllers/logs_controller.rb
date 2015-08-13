@@ -4,8 +4,9 @@ class LogsController < ApplicationController
     wrap_parameters format: [:json]
 
     def index
-        @logs = Log.search(params[:search]).order(sort_column + ' ' + sort_direction).paginate(per_page: 200, page: params[:page])
+        @logs = Log.search(params[:search]).order(sort_column + ' ' + sort_direction)
         flash[:notice] = "Found #{@logs.size} entr" + (@logs.size == 1 ? "y" : "ies")
+        @logs = @logs.paginate(per_page: 200, page: params[:page])
         @logs
     end
 
