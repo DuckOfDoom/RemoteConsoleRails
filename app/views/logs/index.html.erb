@@ -53,7 +53,7 @@
             <td><%= log.build_id %></td>
             <td><%= log.device_id %></td>
             <td><%= log.log_type %></td>
-            <td><%= link_to log.log, log %></td>
+            <td><%= link_to (format_short_log (log.log)), log %></td>
         </tr>
     <% end %>
     <%= will_paginate @logs %>

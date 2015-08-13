@@ -16,8 +16,8 @@
 
 <p>
 <b>Log Details: </b><br>
-<%= @log.log %>
+<%= simple_format @log.log %>
 </p>
 <p>
-<%= @log.stack_trace %>
+<%= simple_format @log.stack_trace  %>
 </p>
