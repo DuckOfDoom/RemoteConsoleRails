@@ -11,7 +11,7 @@ class LogsController < ApplicationController
     end
 
     def clear_database
-#        Log.destroy_all
+        Log.delete_all
         flash[:error] = "Database cleared!"
         redirect_to :back
     end
