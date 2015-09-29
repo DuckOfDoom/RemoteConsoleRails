@@ -1,9 +1,6 @@
-<!--
 <div align="right">
-    <%= button_to "Clear database", controller: 'logs', action: 'clear_database', confirm: 'Are you sure?' %>
+    <%= button_to "Clear database", {:onclick => "return confirm('Are you sure?')", :method => :clear_database } %>
 </div>
--->
-
 <%= form_tag logs_path, :method => 'get' do %>
     <%= hidden_field_tag :direction, params[:direction] %>
     <%= hidden_field_tag :sort, params[:sort] %>
@@ -42,6 +39,7 @@
 <table class="pretty">
     <tr>
         <th> <%= sortable "created_at", "Time Created" %> </th>
+        <th> <%= sortable "timestamp", "Device Time" %> </th>
         <th> <%= sortable "build_id", 'Version/Build ID' %> </th>
         <th> <%= sortable "device_id" %> </th>
         <th> <%= sortable "log_type" %> </th>
@@ -50,6 +48,7 @@
     <% for log in @logs %>
         <tr>
             <td><%= format_timestamp log.created_at %></td>
+            <td><%= format_timestamp log.timestamp %></td>
             <td><%= log.build_id %></td>
             <td><%= log.device_id %></td>
             <td><%= log.log_type %></td>
